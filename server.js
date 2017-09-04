@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const {Recipes} = require('./models');
 const shoppingListRouter = require('./shoppingListRouter');
+const recipesRouter = require('./recipesRouter');
 
 const jsonParser = bodyParser.json();
 const app = express();
@@ -22,6 +23,7 @@ Recipes.create(
 
 app.use('/shopping-list', shoppingListRouter);
 
+app.use('/recipes/:id', recipesRouter);
 app.put('/recipes/:id', jsonParser, (req, res) => {
   const requiredFields = ['name', 'ingredients', 'id'];
 
